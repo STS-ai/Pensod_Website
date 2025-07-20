@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension.ai - Financial Advisory Powered by AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Container Styles */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Language Switcher Styles */
+        .language-switcher {
+            display: none;
+        }
+
+        /* Add styles for the navigation language switcher */
+        .language-switcher-nav {
+            margin-left: 20px;
+        }
+
+        .language-switcher-nav select {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 30px;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 12px;
+        }
+
+        .language-switcher-nav select:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        [dir="rtl"] .language-switcher-nav {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+
+        [dir="rtl"] .language-switcher-nav select {
+            padding-right: 12px;
+            padding-left: 30px;
+            background-position: left 8px center;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher-nav {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .language-switcher-nav select {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .language-switcher {
+            left: 20px;
+            right: auto;
+        }
+
+        [dir="rtl"] .language-switcher select {
+            padding-right: 5px;
+            padding-left: 20px;
+            background-position: left 5px center;
+        }
+
+        [dir="rtl"] .hero-content,
+        [dir="rtl"] .problem-card,
+        [dir="rtl"] .feature,
+        [dir="rtl"] .benefit-item,
+        [dir="rtl"] .blog-post,
+        [dir="rtl"] .contact-form {
+            text-align: right;
+        }
+
+        [dir="rtl"] .problem-grid,
+        [dir="rtl"] .tech-features,
+        [dir="rtl"] .benefits-grid,
+        [dir="rtl"] .blog-slider {
+            direction: rtl;
+        }
+
+        /* Fix container alignment */
+        [dir="rtl"] .container {
+            margin: 0 auto;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+            
+            [dir="rtl"] .language-switcher {
+                left: 10px;
+                right: auto;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        .blog-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 0 40px;
+        }
+
+        .blog-slider {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .blog-post {
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: calc(33.333% - 20px);
+            background: #1a237e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-post a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 20px;
+        }
+
+        .blog-post h3 {
+            margin: 15px 0 10px;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .blog-post p {
+            margin: 0 0 15px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .blog-post .blog-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-post:hover .blog-content {
+            display: block;
+        }
+
+        .blog-post .date {
+            display: block;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* RTL Support for Blog Content */
+        [dir="rtl"] .blog-post {
+            text-align: right;
+        }
+
+        [dir="rtl"] .blog-post .blog-content {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .blog-post {
+                flex: 0 0 calc(50% - 15px);
+                min-width: calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-post {
+                flex: 0 0 100%;
+                min-width: 100%;
+            }
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            background: #1a237e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-form button[type="submit"] {
+            background: white;
+            color: #1a237e;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: auto;
+            min-width: 150px;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        /* RTL Support for Contact Form */
+        [dir="rtl"] .contact-form input,
+        [dir="rtl"] .contact-form textarea {
+            text-align: right;
+        }
+
+        [dir="rtl"] .contact-form button[type="submit"] {
+            font-family: 'Heebo', sans-serif;
+        }
+
+        /* Form Status Styles */
+        .form-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+
+        .form-status.loading {
+            background: rgba(21, 101, 192, 0.2);
+        }
+
+        .form-status.success {
+            background: rgba(46, 125, 50, 0.2);
+        }
+
+        .form-status.error {
+            background: rgba(198, 40, 40, 0.2);
+        }
+
+        /* Ecosystem Section Styles */
+        .ecosystem p {
+            color: #000000;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        /* RTL Support for Ecosystem */
+        [dir="rtl"] .ecosystem p {
+            text-align: right;
+        }
+
+        /* Navigation Menu Styles */
+        nav ul {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 15px;
+        }
+
+        nav li {
+            white-space: nowrap;
+        }
+
+        /* CTA Button Styles */
+        .cta-button {
+            background: linear-gradient(135deg, #1a237e 0%, #64b5f6 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #3949ab 0%, #90caf9 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+        }
+
+        /* Advisor Login Button Styles */
+        .advisor-login-button {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            display: inline-block;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+        }
+
+        .advisor-login-button:hover {
+            background: linear-gradient(135deg, #3949ab 0%, #5c6bc0 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+        }
+
+        [dir="rtl"] .advisor-login-button {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .advisor-login-button {
+                margin: 10px 0;
+                text-align: center;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        /* Problem Section Styles */
+        .problem-section {
+            padding: 80px 0;
+            background: #1a237e;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            background: #3949ab;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            background: #5c6bc0;
+        }
+
+        .problem-card svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            color: #ff5252;
+        }
+
+        .problem-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .problem-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .problem-section h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .problem-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* RTL Support for Problem Section */
+        [dir="rtl"] .problem-card {
+            text-align: right;
+        }
+    </style>
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
+    </div>
+
+    <!-- Include SVG sprite sheet -->
+    <svg style="display: none;">
+        <symbol id="icon-outdated" viewBox="0 0 24 24">
+            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+        </symbol>
+        <symbol id="icon-communication" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+            <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
+        </symbol>
+        <symbol id="icon-workflow" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/>
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z" opacity="0.3"/>
+        </symbol>
+        <symbol id="icon-admin" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" opacity="0.3"/>
+        </symbol>
+        <symbol id="icon-cognitive" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" opacity="0.3"/>
+        </symbol>
+        <symbol id="icon-headcount" viewBox="0 0 24 24">
+            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" opacity="0.3"/>
+        </symbol>
+        <symbol id="icon-ai" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+            <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+        </symbol>
+        <symbol id="icon-hybrid" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/>
+        </symbol>
+        <symbol id="icon-platform" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h12v2H6v-2zm0-4h12v2H6V6z"/>
+        </symbol>
+        <symbol id="icon-integration" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/>
+        </symbol>
+        <symbol id="icon-whitelabel" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </symbol>
+        <symbol id="icon-reduction" viewBox="0 0 24 24">
+            <text x="12" y="10" text-anchor="middle" font-size="8" fill="#42a5f5">80%</text>
+            <path d="M12 22l-6-6h12l-6 6z" fill="#42a5f5"/>
+        </symbol>
+        <symbol id="icon-mobile-brand" viewBox="0 0 24 24">
+            <!-- Phone outline -->
+            <path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 19H7V4h10v16z" fill="#42a5f5"/>
+            <!-- Screen -->
+            <rect x="7" y="3" width="10" height="14" rx="1" fill="white"/>
+            <!-- Logo text -->
+            <text x="12" y="12" text-anchor="middle" font-size="3" fill="#42a5f5" font-weight="bold">Your Logo</text>
+            <!-- Home button -->
+            <rect x="11" y="18" width="2" height="1" rx="0.5" fill="#42a5f5"/>
+        </symbol>
+    </svg>
+
+    <!-- Header -->
+    <header class="fixed-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="images/Logo_PensionAI_blue.png" alt="Pension.ai Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" data-translate="home">Home</a></li>
+                    <li><a href="#technology" data-translate="technology">Technology</a></li>
+                    <li><a href="#platform" data-translate="platform">Platform</a></li>
+                    <li><a href="#about" data-translate="about">About</a></li>
+                    <li><a href="#blog" data-translate="blog">Blog</a></li>
+                    <li><a href="https://agent.pensionai.org/" class="advisor-login-button" data-translate="advisorLogin">Advisor Login</a></li>
+                    <li><a href="#contact" class="cta-button" data-translate="requestDemo">Request a Demo</a></li>
+                    <li class="language-switcher-nav">
+                        <select id="languageSelect" onchange="changeLanguage(this.value)">
+                            <option value="en">English</option>
+                            <option value="he">עברית</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+            <button class="menu-button" aria-label="Toggle menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-image">
+            <img src="images/hero-image.jpg" alt="Financial advisor with laptop">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>
+                    <span class="title-line" data-translate="heroTitle">Financial Advisory</span>
+                    <span class="title-line gradient-text" data-translate="heroSubtitle">Powered by AI</span>
+                </h1>
+                <p data-translate="heroDescription">Revolutionizing retirement advisory with AI – for users and institutions</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button" data-translate="requestDemo">Request a Demo</a>
+                    <a href="#technology" class="secondary-button" data-translate="learnMore">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem-section">
+        <div class="container">
+            <h2 data-translate="problemTitle">Manual Work is Killing Advisor Efficiency</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <use xlink:href="#icon-outdated"></use>
+                    </svg>
+                    <h3 data-translate="outdatedProcesses">Outdated Processes</h3>
+                    <p data-translate="outdatedProcessesDesc">Offline documentation using spreadsheets or printed forms</p>
+                </div>
+                <div class="problem-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <use xlink:href="#icon-communication"></use>
+                    </svg>
+                    <h3 data-translate="inefficientCommunication">Inefficient Communication</h3>
+                    <p data-translate="inefficientCommunicationDesc">Client conversations occur annually with no digital tracking</p>
+                </div>
+                <div class="problem-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <use xlink:href="#icon-workflow"></use>
+                    </svg>
+                    <h3 data-translate="fragmentedWorkflows">Fragmented Workflows</h3>
+                    <p data-translate="fragmentedWorkflowsDesc">Advisors use non-integrated systems</p>
+                </div>
+                <div class="problem-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <use xlink:href="#icon-admin"></use>
+                    </svg>
+                    <h3 data-translate="heavyAdministrativeLoad">Heavy Administrative Load</h3>
+                    <p data-translate="heavyAdministrativeLoadDesc">65% of advisor time is spent on back-office</p>
+                </div>
+                <div class="problem-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <use xlink:href="#icon-cognitive"></use>
+                    </svg>
+                    <h3 data-translate="cognitiveLoadBurnout">Cognitive Load & Burnout</h3>
+                    <p data-translate="cognitiveLoadBurnoutDesc">71% of advisors report frequent stress</p>
+                </div>
+                <div class="problem-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <use xlink:href="#icon-headcount"></use>
+                    </svg>
+                    <h3 data-translate="hiddenHeadcountCosts">Hidden Headcount Costs</h3>
+                    <p data-translate="hiddenHeadcountCostsDesc">Solo advisors hire 1–2 assistants to cope</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology">
+        <div class="container">
+            <h2 data-translate="techTitle">AI-Empowered Financial Professionals</h2>
+            <p class="subtitle" data-translate="techSubtitle">Leveraging Robo-Advisors capabilities into human decision-centric protocols</p>
+            <div class="tech-features">
+                <div class="feature">
+                    <svg class="icon"><use xlink:href="#icon-ai"></use></svg>
+                    <h3 data-translate="aiPoweredInsights">AI-Powered Insights</h3>
+                    <p data-translate="aiPoweredInsightsDesc">Algorithms generate personalized retirement scenarios</p>
+                </div>
+                <div class="feature">
+                    <svg class="icon"><use xlink:href="#icon-hybrid"></use></svg>
+                    <h3 data-translate="hybridRecommendation">Hybrid-Recommendation Engine</h3>
+                    <p data-translate="hybridRecommendationDesc">Rules + ML logic for explainability</p>
+                </div>
+                <div class="feature">
+                    <svg class="icon"><use xlink:href="#icon-platform"></use></svg>
+                    <h3 data-translate="dualPlatform">Dual-Platform</h3>
+                    <p data-translate="dualPlatformDesc">Advisor dashboard + client mobile app</p>
+                </div>
+                <div class="feature">
+                    <svg class="icon"><use xlink:href="#icon-integration"></use></svg>
+                    <h3 data-translate="seamlessIntegration">Seamless-Integration</h3>
+                    <p data-translate="seamlessIntegrationDesc">Fast connection with your existing systems via API</p>
+                </div>
+                <div class="feature">
+                    <svg class="icon"><use xlink:href="#icon-whitelabel"></use></svg>
+                    <h3 data-translate="whiteLabelTech">White-Label Technology</h3>
+                    <p data-translate="whiteLabelTechDesc">Custom branding, your logo, full agency experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 data-translate="benefitsTitle">Benefits for Your Agency</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <svg class="icon"><use xlink:href="#icon-reduction"></use></svg>
+                    <h3 data-translate="reduceTimeTitle">Reduce Time Spent on Manual Tasks</h3>
+                    <p data-translate="reduceTimeDesc">Pension.ai automates calculations and scenario planning, freeing advisors to focus on relationships instead of paperwork. Reports are generated instantly — and with your agency's branding.</p>
+                </div>
+                <div class="benefit-item">
+                    <svg class="icon"><use xlink:href="#icon-platform"></use></svg>
+                    <h3 data-translate="increaseProductivityTitle">Increase Advisor Productivity</h3>
+                    <p data-translate="increaseProductivityDesc">Advisors gain powerful visualization tools that make it easy to explain complex pension topics. The platform streamlines day-to-day work, leading to faster client onboarding and fewer errors.</p>
+                </div>
+                <div class="benefit-item">
+                    <svg class="icon"><use xlink:href="#icon-communication"></use></svg>
+                    <h3 data-translate="enhanceExperienceTitle">Enhance Client Experience</h3>
+                    <p data-translate="enhanceExperienceDesc">Clients get 24/7 access to their pension information through your branded mobile app. With interactive tools and secure messaging, they stay engaged and confident in their plan.</p>
+                </div>
+                <div class="benefit-item">
+                    <svg class="icon"><use xlink:href="#icon-integration"></use></svg>
+                    <h3 data-translate="integrateTitle">Integrate Without Disruption</h3>
+                    <p data-translate="integrateDesc">Our platform connects to your existing systems via API. That means no manual transfers, no data loss, and no disruption to your current workflows.</p>
+                </div>
+                <div class="benefit-item">
+                    <svg class="icon"><use xlink:href="#icon-mobile-brand"></use></svg>
+                    <h3 data-translate="matchBrandTitle">Match Your Brand</h3>
+                    <p data-translate="matchBrandDesc">Pension.ai is a white-label solution. From reports to the client app, your branding — your logo, colors, and identity — takes the lead while we handle the technology.</p>
+                </div>
+            </div>
+            <div class="benefits-cta">
+                <p>Ready to streamline your agency's operations and boost client satisfaction?</p>
+                <a href="#contact" class="cta-button">Request a Demo Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <h2 data-translate="calculatorTitle">Calculate Your Potential Savings</h2>
+            <p class="subtitle" data-translate="calculatorSubtitle">See how Pension.ai can transform your advisory practice</p>
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <form id="roiCalculator">
+                        <div class="form-group">
+                            <label for="advisors" data-translate="advisorsLabel">Number of Advisors</label>
+                            <input type="number" id="advisors" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assistants" data-translate="assistantsLabel">Number of Admin Assistants</label>
+                            <input type="number" id="assistants" min="0" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clients" data-translate="clientsLabel">Average Clients per Advisor</label>
+                            <input type="number" id="clients" min="10" value="50" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hourly" data-translate="hourlyLabel">Average Advisor Hourly Rate ($)</label>
+                            <input type="number" id="hourly" min="50" value="150" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin" data-translate="adminLabel">Hours Spent on Admin Tasks (Monthly)</label>
+                            <input type="number" id="admin" min="10" value="40" required>
+                        </div>
+                        <button type="submit" class="cta-button" data-translate="calculateButton">Calculate Savings</button>
+                    </form>
+                </div>
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h3 data-translate="timeSavingsTitle">Annual Time Savings</h3>
+                        <div class="result-value" id="timeSavings">0 hours</div>
+                        <p data-translate="timeSavingsDesc">Time freed up for client relationships</p>
+                    </div>
+                    <div class="result-card">
+                        <h3 data-translate="costSavingsTitle">Cost Savings</h3>
+                        <div class="result-value" id="costSavings">$0</div>
+                        <p data-translate="costSavingsDesc">Reduced operational costs</p>
+                    </div>
+                    <div class="result-card">
+                        <h3 data-translate="staffReductionTitle">Staff Reduction</h3>
+                        <div class="result-value" id="staffReduction">0 FTE</div>
+                        <p data-translate="staffReductionDesc">Potential admin staff reduction</p>
+                    </div>
+                    <div class="result-card">
+                        <h3 data-translate="capacityTitle">Additional Capacity</h3>
+                        <div class="result-value" id="capacity">0 clients</div>
+                        <p data-translate="capacityDesc">More clients you can serve</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section id="platform" class="platform">
+        <div class="container">
+            <h2 data-translate="platformTitle">Our Platform</h2>
+            <div class="platform-content">
+                <div class="platform-image">
+                    <img src="images/Platform.png" alt="Pension.ai Platform" class="platform-img">
+                </div>
+                <div class="platform-description">
+                    <p data-translate="platformDescription">Experience our cutting-edge platform that combines advanced AI technology with financial expertise to provide personalized pension solutions. Our intuitive interface makes it easy to manage your retirement planning with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 data-translate="testimonialsTitle">What Our Clients Say</h2>
+            <p class="subtitle" data-translate="testimonialsSubtitle">Trusted by leading financial institutions</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="quote black-text">Pension.ai has transformed our advisory process. We've seen a 40% increase in client engagement and significantly reduced our operational costs.</p>
+                    <div class="author">
+                        <img src="images/testimonial1.jpg" alt="Sarah Johnson">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Head of Wealth Management, Global Bank</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote black-text">"The AI-powered insights have helped us provide more personalized retirement planning. Our clients appreciate the modern, digital-first approach."</p>
+                    <div class="author">
+                        <img src="images/testimonial2.jpg" alt="Michael Chen">
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>CEO, Future Financial Advisors</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote black-text">"Implementation was seamless, and the support team is exceptional. We've reduced our administrative workload by 65% while improving client satisfaction."</p>
+                    <div class="author">
+                        <img src="images/testimonial3.jpg" alt="Emma Rodriguez">
+                        <div class="author-info">
+                            <h4>Emma Rodriguez</h4>
+                            <p>Operations Director, Wealth Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 data-translate="aboutTitle">About Us</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="lead" data-translate="aboutLead">At Pension.ai, we are redefining how retirement and wealth planning are delivered.</p>
+                    
+                    <p data-translate="aboutDesc1">We empower both financial advisors and wealth management agencies with intelligent tools that boost productivity, improve client outcomes, and simplify complex operations. Our platform blends advanced AI with real-world financial expertise to support firms of any size.</p>
+                    
+                    <p data-translate="aboutDesc2">Our mission is to bridge the gap between human insight and machine intelligence. By combining the judgment of experienced advisors with smart algorithms and real-time data, we help professionals scale their impact, reduce overhead, and navigate regulatory challenges, all while keeping the client experience personal.</p>
+                    
+                    <p data-translate="aboutDesc3">Founded by a team of seasoned experts in AI, fintech, and enterprise software, Pension.ai is proud to be part of the Microsoft for Startups program and operates from the heart of Tel Aviv's innovation district.</p>
+                    
+                    <p class="mission-statement" data-translate="missionStatement">We're building a future where retirement advice is more accessible, more efficient, and more intelligent for everyone.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/aboutus.png" alt="Pension.ai Team and Office">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section id="ecosystem" class="ecosystem">
+        <div class="container">
+            <h2 data-translate="ecosystemTitle">Ecosystem Collaborations</h2>
+            <div class="partner-logos">
+                <img src="images/microsoft-startups.png" alt="Microsoft for Startups" class="microsoft-startups">
+                <img src="images/azure.png" alt="Azure">
+            </div>
+            <p data-translate="ecosystemDesc">We collaborate with leading tech and financial institutions to ensure seamless integration and cutting-edge performance.</p>
+        </div>
+    </section>
+
+    <!-- Security & Compliance Section -->
+    <section id="security" class="security">
+        <div class="container">
+            <h2 data-translate="securityTitle">Security & Compliance</h2>
+            <p class="subtitle" data-translate="securitySubtitle">Your data security is our top priority</p>
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 data-translate="bankLevelTitle">Bank-Level Security</h3>
+                    <p data-translate="bankLevelDesc">256-bit encryption and multi-factor authentication ensure your data remains protected at all times.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 data-translate="complianceTitle">Compliance Ready</h3>
+                    <p data-translate="complianceDesc">Built to meet GDPR, CCPA, and financial industry regulations with regular compliance audits.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3 data-translate="dataProtectionTitle">Data Protection</h3>
+                    <p data-translate="dataProtectionDesc">Regular backups, secure data centers, and strict access controls protect your information.</p>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 data-translate="certifiedTitle">Certified & Audited</h3>
+                    <p data-translate="certifiedDesc">ISO 27001 certified with regular security audits and penetration testing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 data-translate="blogTitle">Blog</h2>
+            <p class="subtitle" data-translate="blogSubtitle">Stay ahead with the latest innovations in FinTech</p>
+            <div class="blog-container">
+                <button class="slider-nav prev" aria-label="Previous articles">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <div class="blog-slider">
+                    <div class="blog-post">
+                        <a href="article-ai-future.html">
+                            <img src="./images/Blog_The Future of AI in Financial Advisory.png" alt="AI in Financial Advisory">
+                            <h3 data-translate="blogPost1Title">The Future of AI in Financial Advisory</h3>
+                            <p data-translate="blogPost1Desc">How Artificial Intelligence is Transforming Retirement Planning</p>
+                            <p class="blog-content" data-translate="blogPost1Content">Artificial Intelligence is revolutionizing the financial advisory landscape, particularly in retirement planning. This article explores how AI-powered tools are enabling advisors to provide more personalized, data-driven recommendations while reducing administrative burdens. We'll examine real-world applications, success stories, and the future potential of AI in financial advisory.</p>
+                            <span class="date">May 7, 2025</span>
+                        </a>
+                    </div>
+                    <div class="blog-post">
+                        <a href="article-regulatory-changes.html">
+                            <img src="./images/Blog_Navigating Regulatory Changes in Retirement Planning.png" alt="Regulatory Changes">
+                            <h3 data-translate="blogPost2Title">Navigating Regulatory Changes in Retirement Planning</h3>
+                            <p data-translate="blogPost2Desc">A Guide to Staying Compliant in an Evolving Advisory Landscape</p>
+                            <p class="blog-content" data-translate="blogPost2Content">The regulatory environment for retirement planning is constantly evolving. This comprehensive guide helps financial advisors stay compliant while maximizing client benefits. We cover recent regulatory changes, compliance best practices, and how technology can help streamline regulatory reporting and documentation.</p>
+                            <span class="date">April 12, 2025</span>
+                        </a>
+                    </div>
+                    <div class="blog-post">
+                        <a href="article-advisor-burnout.html">
+                            <img src="./images/Blog_Addressing Advisor Burnout Through Technology.png" alt="Advisor Burnout">
+                            <h3 data-translate="blogPost3Title">Addressing Advisor Burnout Through Technology</h3>
+                            <p data-translate="blogPost3Desc">How Smart Tools Can Restore Focus and Reignite Purpose</p>
+                            <p class="blog-content" data-translate="blogPost3Content">Advisor burnout is a growing concern in the financial services industry. This article examines how technology can help reduce administrative tasks, improve work-life balance, and allow advisors to focus on what matters most: building meaningful client relationships. Learn practical strategies for leveraging technology to prevent burnout and enhance job satisfaction.</p>
+                            <span class="date">February 21, 2025</span>
+                        </a>
+                    </div>
+                    <div class="blog-post">
+                        <a href="article-millennial-wealth.html">
+                            <img src="./images/Blog_The Millennial Wealth Transfer Are You Ready.png" alt="Millennial Wealth">
+                            <h3 data-translate="blogPost4Title">The Millennial Wealth Transfer: Are You Ready?</h3>
+                            <p data-translate="blogPost4Desc">Positioning Your Advisory Firm for the $84 Trillion Opportunity</p>
+                            <p class="blog-content" data-translate="blogPost4Content">The largest wealth transfer in history is underway, with millennials set to inherit $84 trillion. This article provides actionable insights for financial advisors looking to attract and serve millennial clients. We explore their unique needs, preferences, and how technology can help bridge the generational gap in financial advisory services.</p>
+                            <span class="date">November 3, 2024</span>
+                        </a>
+                    </div>
+                </div>
+                <button class="slider-nav next" aria-label="Next articles">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 data-translate="getInTouch">Get in Touch</h2>
+            <p class="cta-text" data-translate="ctaText">Let us show you how Pension.ai can upgrade your agency's advisory experience.</p>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm" action="send_email.php" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" data-translate="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" data-translate="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" data-translate="company" placeholder="Company" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" data-translate="message" placeholder="Message" required></textarea>
+                        </div>
+                        <button type="submit" data-translate="sendMessage">Send Message</button>
+                    </form>
+                    <div id="formStatus" class="form-status"></div>
+                </div>
+                <div class="contact-image">
+                    <img src="images/office.jpg" alt="Pension.ai Office">
+                </div>
+            </div>
+            <div class="contact-info">
+                <p data-translate="contactEmail">Email: stav@pensionai.org</p>
+                <p data-translate="contactAddress">Address: 144 Menachem Begin Blvd. Floor 50, Tel Aviv</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-translate="copyright">Copyright © 2025 Pension.ai</p>
+        </div>
+    </footer>
+
+    <!-- Add JavaScript for mobile menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.menu-button');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a');
+
+            // Toggle mobile menu
+            menuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nav.classList.toggle('active');
+                menuButton.setAttribute('aria-expanded', 
+                    menuButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                );
+            });
+
+            // Close mobile menu when clicking a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (nav.classList.contains('active') && 
+                    !nav.contains(e.target) && 
+                    !menuButton.contains(e.target)) {
+                    nav.classList.remove('active');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Prevent clicks inside nav from closing the menu
+            nav.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+
+    <!-- Add JavaScript for form handling -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const statusDiv = document.getElementById('formStatus');
+            const submitButton = this.querySelector('button[type="submit"]');
+            
+            // Show loading state
+            statusDiv.innerHTML = 'Sending message...';
+            statusDiv.className = 'form-status loading';
+            submitButton.disabled = true;
+            
+            fetch('send_email.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    statusDiv.innerHTML = 'Message sent successfully! We will get back to you soon.';
+                    statusDiv.className = 'form-status success';
+                    this.reset();
+                } else {
+                    statusDiv.innerHTML = data.message || 'Failed to send message. Please try again.';
+                    statusDiv.className = 'form-status error';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusDiv.innerHTML = 'Error sending message. Please try again or contact us directly at stav@pensionai.org';
+                statusDiv.className = 'form-status error';
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+            });
+        });
+    </script>
+
+    <!-- Add JavaScript for ROI Calculator -->
+    <script>
+        document.getElementById('roiCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get input values
+            const advisors = parseInt(document.getElementById('advisors').value);
+            const assistants = parseInt(document.getElementById('assistants').value);
+            const clients = parseInt(document.getElementById('clients').value);
+            const hourlyRate = parseInt(document.getElementById('hourly').value);
+            const adminHours = parseInt(document.getElementById('admin').value);
+            
+            // Constants
+            const ASSISTANT_ANNUAL_COST = 50000; // Average annual cost per admin assistant
+            const TIME_SAVINGS_PERCENTAGE = 0.65; // 65% time savings
+            
+            // Calculate savings
+            const monthlyAdminHours = adminHours * advisors;
+            const annualAdminHours = monthlyAdminHours * 12;
+            const timeSavings = Math.round(annualAdminHours * TIME_SAVINGS_PERCENTAGE);
+            
+            // Calculate staff reduction (FTE - Full Time Equivalent)
+            const staffReduction = Math.round((timeSavings / (2080)) * 100) / 100; // 2080 hours per year for FTE
+            
+            // Calculate cost savings
+            const advisorCostSavings = Math.round(timeSavings * hourlyRate);
+            const assistantCostSavings = Math.round(staffReduction * ASSISTANT_ANNUAL_COST);
+            const totalCostSavings = advisorCostSavings + assistantCostSavings;
+            
+            // Calculate additional capacity
+            const additionalCapacity = Math.round((timeSavings / (adminHours * 12)) * clients);
+            
+            // Update results
+            document.getElementById('timeSavings').textContent = timeSavings.toLocaleString() + ' hours';
+            document.getElementById('costSavings').textContent = '$' + totalCostSavings.toLocaleString();
+            document.getElementById('staffReduction').textContent = staffReduction.toLocaleString() + ' FTE';
+            document.getElementById('capacity').textContent = additionalCapacity.toLocaleString() + ' clients';
+            
+            // Add animation
+            const resultCards = document.querySelectorAll('.result-card');
+            resultCards.forEach(card => {
+                card.style.animation = 'none';
+                card.offsetHeight; // Trigger reflow
+                card.style.animation = 'fadeIn 0.6s ease-out forwards';
+            });
+        });
+    </script>
+
+    <!-- Platform Tour JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tourNavBtns = document.querySelectorAll('.tour-nav-btn');
+            const tourSteps = document.querySelectorAll('.tour-step');
+
+            tourNavBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and steps
+                    tourNavBtns.forEach(b => b.classList.remove('active'));
+                    tourSteps.forEach(s => s.classList.remove('active'));
+
+                    // Add active class to clicked button and corresponding step
+                    btn.classList.add('active');
+                    const stepId = `step-${btn.dataset.step}`;
+                    document.getElementById(stepId).classList.add('active');
+                });
+            });
+
+            // Initialize tooltips
+            const tooltips = document.querySelectorAll('.highlight-tooltip');
+            tooltips.forEach(tooltip => {
+                const rect = tooltip.getBoundingClientRect();
+                if (rect.right > window.innerWidth) {
+                    tooltip.style.left = 'auto';
+                    tooltip.style.right = '0';
+                }
+            });
+        });
+    </script>
+
+    <!-- Add JavaScript for Blog Slider -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.blog-slider');
+            const prevBtn = document.querySelector('.slider-nav.prev');
+            const nextBtn = document.querySelector('.slider-nav.next');
+            const blogPosts = document.querySelectorAll('.blog-post');
+            
+            let currentIndex = 0;
+            let isAnimating = false;
+            let postsPerView = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
+            
+            function updateSliderPosition() {
+                isAnimating = true;
+                const slideWidth = blogPosts[0].offsetWidth + 30; // Width + gap
+                const offset = -currentIndex * slideWidth;
+                slider.style.transform = `translateX(${offset}px)`;
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 500);
+            }
+            
+            function updateNavigation() {
+                prevBtn.classList.toggle('disabled', currentIndex === 0);
+                nextBtn.classList.toggle('disabled', currentIndex >= blogPosts.length - postsPerView);
+            }
+            
+            function slide(direction) {
+                if (isAnimating) return;
+                
+                if (direction === 'next' && currentIndex < blogPosts.length - postsPerView) {
+                    currentIndex++;
+                } else if (direction === 'prev' && currentIndex > 0) {
+                    currentIndex--;
+                }
+                
+                updateSliderPosition();
+                updateNavigation();
+            }
+            
+            prevBtn.addEventListener('click', () => slide('prev'));
+            nextBtn.addEventListener('click', () => slide('next'));
+            
+            // Add touch support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        slide('next');
+                    } else {
+                        slide('prev');
+                    }
+                }
+            }
+            
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const newPostsPerView = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
+                    if (newPostsPerView !== postsPerView) {
+                        postsPerView = newPostsPerView;
+                        currentIndex = Math.min(currentIndex, blogPosts.length - postsPerView);
+                        updateSliderPosition();
+                        updateNavigation();
+                    }
+                }, 250);
+            });
+            
+            // Initialize
+            updateNavigation();
+        });
+    </script>
+
+    <!-- Existing Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const blogImages = document.querySelectorAll('.blog-post img');
+            blogImages.forEach(img => {
+                img.onerror = function() {
+                    console.error('Failed to load image:', this.src);
+                    this.classList.add('error');
+                };
+                img.onload = function() {
+                    console.log('Successfully loaded image:', this.src);
+                };
+            });
+        });
+    </script>
+</body>
+</html> 
